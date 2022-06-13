@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
     <link rel="icon" href="static/favicon-32x32.png">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      
+    </script>
     <title>Данные полива</title>
     <style>
         body {
@@ -43,10 +47,6 @@
             width: 930px;
             display: flex;
         }
-        .field {
-            width: 50%;
-            margin-top: -40vh;
-        }
         .title {
             font-size: 50px;
             color: #fff;
@@ -65,29 +65,36 @@
         .f1 {
             font-size: 30px;
             color: #fff;
-            margin: 380px 0px 0px 65vh;
+            margin: -400px 0px 0px 135vh;
             white-space: pre;
         }
         .f2 {
             font-size: 30px;
             color: #fff;
-            margin: 40px 0px 0px 65vh;
+            margin: 60px 0px 0px 135vh;
             white-space: pre;
         }
         span {white-space: pre;}
-        .gre {background-color: var(--green);}
+        .gre {background-color: #3EA60A;}
         .blu {background-color: #4447FF;}
         .progress-bar {background-color: #4447FF;}
         #k {
             color: #fff;
-            margin: -13vh 0px 0px 130vh;
+            position: absolute;
+            left: 135vh;
+            margin-top: -400px;
             font-size: 60px;
         }
         #log {
             border-radius: 20px;
-            margin: -7vh 0px 0px 30px;
+            margin: 7vh 0px 0px 30px;
             cursor: pointer;
             border: 1px solid #fff;
+        }
+        #piechart {
+            width: 850px;
+            height: 850px;
+            margin: -120px 0px 0px 35vh;
         }
     </style>
 </head>
@@ -98,32 +105,11 @@
     <h1 id="h4"> Данные полива</h1><br>
     <h1 id="h5" onclick="location.replace('cucumber.html')"> Выйти</h1><br>
     <p class="title">Поле</p>
-    <div class="field">
-        <div class="progress"><div class="progress-bar" id="d1"></div></div>
-        <div class="progress"><div class="progress-bar" id="d2"></div></div>
-        <div class="progress"><div class="progress-bar" id="d3"></div></div>
-        <div class="progress"><div class="progress-bar" id="d4"></div></div>
-        <div class="progress"><div class="progress-bar" id="d5"></div></div>
-        <div class="progress"><div class="progress-bar" id="d6"></div></div>
-        <div class="progress"><div class="progress-bar" id="d7"></div></div>
-        <div class="progress"><div class="progress-bar" id="d8"></div></div>
-        <div class="progress"><div class="progress-bar" id="d9"></div></div>
-        <div class="progress"><div class="progress-bar" id="d10"></div></div>
-        <div class="progress"><div class="progress-bar" id="d11"></div></div>
-        <div class="progress"><div class="progress-bar" id="d12"></div></div>
-        <div class="progress"><div class="progress-bar" id="d13"></div></div>
-        <div class="progress"><div class="progress-bar" id="d14"></div></div>
-        <div class="progress"><div class="progress-bar" id="d15"></div></div>
-        <div class="progress"><div class="progress-bar" id="d16"></div></div>
-        <div class="progress"><div class="progress-bar" id="d17"></div></div>
-        <div class="progress"><div class="progress-bar" id="d18"></div></div>
-        <div class="progress"><div class="progress-bar" id="d19"></div></div>
-        <div class="progress"><div class="progress-bar" id="d20"></div></div>
-    </div>
+    <div id="piechart"></div>
     <h2 class="f1"><span class="gre">     </span> Необработанное поле</h2>
     <h2 class="f2"><span class="blu">     </span> Политое поле</h2>
     <h2 id="k">2% полито!</h2>
-    <img id="log" src="static/apple-touch-icon.png" width="100" height="100" onclick="location.replace('/cucumber')">
+    <img id="log" src="static/apple-touch-icon.png" width="100" height="100" onclick="location.replace('cucumber.html')">
 
     <script>
         // for (let i = 1; i <= 20; i++) {
@@ -136,98 +122,49 @@
         //     p.append(pb)
         // }
 
-        let pl1 = 2
-        let pl2 = 0
-        let pl3 = 0
-        let pl4 = 0
-        let pl5 = 0
-        let pl6 = 0
-        let pl7 = 0
-        let pl8 = 0
-        let pl9 = 0
-        let pl10 = 0
-        let pl11 = 0
-        let pl12 = 0
-        let pl13 = 0
-        let pl14 = 0
-        let pl15 = 0
-        let pl16 = 0
-        let pl17 = 0
-        let pl18 = 0
-        let pl19 = 0
-        let pl20 = 0
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart); 
+        
+        let b = 0
 
-        setInterval(() => { with (d1.style) {
-            width = pl1 + '%' 
-            pl1++
-            } if (parseInt(d1.style.width) >= 135) { with (d2.style) {
-                width = pl2 + '%'
-                pl2++
-            }} if (parseInt(d2.style.width) >= 135) { with (d3.style) {
-                width = pl3 + '%'
-                pl3++
-            }} if (parseInt(d3.style.width) >= 135) { with (d4.style) {
-                width = pl4 + '%'
-                pl4++
-            }} if (parseInt(d4.style.width) >= 135) { with (d5.style) {
-                width = pl5 + '%'
-                pl5++
-            }} if (parseInt(d5.style.width) >= 135) { with (d6.style) {
-                width = pl6 + '%'
-                pl6++
-            }} if (parseInt(d6.style.width) >= 135) { with (d7.style) {
-                width = pl7 + '%'
-                pl7++
-            }} if (parseInt(d7.style.width) >= 135) { with (d8.style) {
-                width = pl8 + '%'
-                pl8++
-            }} if (parseInt(d8.style.width) >= 135) { with (d9.style) {
-                width = pl9 + '%'
-                pl9++
-            }} if (parseInt(d9.style.width) >= 135) { with (d10.style) {
-                width = pl10 + '%'
-                pl10++
-            }} if (parseInt(d10.style.width) >= 135) { with (d11.style) {
-                width = pl11 + '%'
-                pl11++
-            }} if (parseInt(d11.style.width) >= 135) { with (d12.style) {
-                width = pl12 + '%'
-                pl12++
-            }} if (parseInt(d12.style.width) >= 135) { with (d13.style) {
-                width = pl13 + '%'
-                pl13++
-            }} if (parseInt(d13.style.width) >= 135) { with (d14.style) {
-                width = pl14 + '%'
-                pl14++
-            }} if (parseInt(d3.style.width) >= 135) { with (d4.style) {
-                width = pl4 + '%'
-                pl4++
-            }} if (parseInt(d14.style.width) >= 135) { with (d15.style) {
-                width = pl15 + '%'
-                pl15++
-            }} if (parseInt(d15.style.width) >= 135) { with (d16.style) {
-                width = pl16 + '%'
-                pl16++
-            }} if (parseInt(d16.style.width) >= 135) { with (d17.style) {
-                width = pl17 + '%'
-                pl17++
-            }} if (parseInt(d17.style.width) >= 135) { with (d18.style) {
-                width = pl18 + '%'
-                pl18++
-            }} if (parseInt(d18.style.width) >= 135) { with (d19.style) {
-                width = pl19 + '%'
-                pl19++
-            }} if (parseInt(d19.style.width) >= 135) { with (d20.style) {
-                width = pl20 + '%'
-                pl20++
-            }} 
-        }, 30)
-
-        let per = 2
         setInterval(() => {
-            k.textContent = `${per}% полито!`
-            per++
-        }, 500)
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Обработка поля'],
+                ['Политое поле', b += .02],
+                ['Политое поле', 0],
+                ['Политое поле', 0],
+                ['Необработанное поле', 100],
+            ]);
+            var options = {
+                backgroundColor: 'transparent',
+                legend: 'none',
+            };    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));   
+            chart.draw(data, options);
+        }, 5)
+
+        function drawChart() {  
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Обработка поля'],
+                ['Необработанное поле', 2],
+                ['Политое поле', 0],
+                ['Политое поле', 0],
+                ['Политое поле', 100],
+            ]);
+            var options = {
+                color: ['#fac029', '#fff'],
+                backgroundColor: 'transparent',
+                legend: 'none'
+            };    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));   
+            chart.draw(data, options);
+        }
+
+        setInterval(() => {
+            if (b <= 100) {
+                k.textContent = Math.floor(b/1.25) + '% полито!'
+            }
+        }, 5)
 
     </script>
 </body>
