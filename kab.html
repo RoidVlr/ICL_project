@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
+    <link rel="icon" href="static/favicon-32x32.png">
+    <title>Устройства</title>
+    <style>
+        body {
+            background-image: url(static/Desktop_2.jpg);
+        }
+        :root {
+            --green: #1CFF33;
+            --red: #A50B00;
+            --hex: #C71F1F;
+        }
+        h1:not(.stater) {
+            color: #fff;
+            font-size: 35px;
+            border: 1px solid var(--hex);
+            width: 303px;
+            white-space: pre;
+            cursor: pointer;
+            text-align: center;
+            transition: .15s all;
+        }
+        #h1:hover, #h2:hover, #h3:hover, #h4:hover, #h5:hover {
+            border: 1px solid #fff;
+            -webkit-box-shadow: 14px 14px 9px 0px rgba(5, 55, 94, 0.25);
+            -moz-box-shadow: 14px 14px 9px 0px rgba(5, 55, 94, 0.25);
+            box-shadow: 14px 14px 9px 0px rgba(5, 55, 94, 0.25);
+        }
+        #h1 {
+            margin-top: 30px;
+        }
+        #h2 {
+            background-color: #A50B00;
+        }
+        #log {
+            border-radius: 20px;
+            margin: -30vh 0px 0px 30px;
+            cursor: pointer;
+            border: 1px solid #fff;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .map {
+            height: 390px;
+            margin-top: -75px;
+            margin-left: 50vh;
+            border-radius: 20px;
+            border: 3px solid red;
+            width: 70vh;
+            overflow: hidden;
+        }
+        .b1 {
+            margin: -450px 0px 0px 950px;
+            font-size: 40px;
+
+        }
+        .b2 {
+            margin: -250px 0px 0px 950px;
+            font-size: 40px;
+        }
+        .btn {
+            -webkit-box-shadow: 15px 15px 8px 0px rgba(34, 60, 80, 0.28);
+            -moz-box-shadow: 15px 15px 8px 0px rgba(34, 60, 80, 0.28);
+            box-shadow: 15px 15px 8px 0px rgba(34, 60, 80, 0.28);
+            width: 500px;
+        }
+        #plus, #minus {
+            font-size: 50px;
+            position: absolute;
+            transition: .2s all;
+            border-radius: 10%;
+        }
+        #plus {
+            right: 80vh;
+            top: 62vh;
+        }
+        #minus {
+            right: 80vh;
+            top: 77vh;
+            width: 50px;
+        }
+        #plus:hover, #minus:hover {
+            outline: 3px solid red;
+            transform: scale(1.05);
+            background: #CDCDCD; 
+        }
+        .speed {
+            position: absolute;
+            top: 7vh;
+            left: 60vh;
+        }
+        .cult {
+            position: absolute;
+            top: 7vh;
+            left: 130vh;
+        }
+        p {
+            color: #fff;
+            font-size: 50px;
+            text-align: center;
+            line-height: 2.5rem;
+            font-weight: bold;
+        }
+        [type="range"] {
+            width: 250px;
+        }
+        select {
+            font-size: 30px;
+            width: 200px;
+            margin: 10px 0px 0px 20%;
+            height: 60px;
+            border: 2px solid red;
+        }
+        .col-1 {
+            color: #fff;
+            font-size: 50px;
+        }
+        .sep {
+            left: -240px;
+            position: relative;
+        }
+        .sep_ {
+            left: -340px;
+            position: relative;
+        }
+        #min {
+            position: relative;
+            right: 300px;
+        }
+        #sec {
+            position: relative;
+            left: -290px;
+        }
+        #hou {
+            position: relative;
+            left: -300px;
+        }
+        .timer {
+            position: absolute;
+            top: 33vh;
+            left: 106vh;
+        }
+        p2 {
+            position: absolute;
+            font-size: 50px;
+            color: #fff;
+            font-weight: bold;
+            margin: -555px 0px 0px -966px;
+        }
+        p1 {font-weight: bold;}
+        .water {
+            float: right;
+            margin: -77vh 20vh 0px 0px;
+        }
+        p3, p4 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #fff;
+        }
+        p4 {
+            line-height: 2.5rem;
+            margin-left: 45%;
+        }
+        .stater {
+            color: #fff;
+            margin: -420px 0px 0px 980px;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="h1" onclick="location.replace('cont.html')"> Личный кабинет</h1><br>
+    <h1 id="h2"> Устройства</h1><br>
+    <h1 id="h3" onclick="location.replace('tech.html')"> Тех-поддержка</h1><br>
+    <h1 id="h4" onclick="location.replace('dash.html')"> Данные полива</h1><br>
+    <h1 id="h5" onclick="location.replace('cucumber.html')"> Выйти</h1><br>
+
+    <div class="map">
+        <div id="map"></div>
+    </div>
+
+    <button class="btn btn-danger btn-lg b1" id="b1">Подключить</button>
+    <button disabled class="btn btn-danger btn-lg b2" id="b2">Отключить</button>
+
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+
+    <div class="speed">
+        <p>Скорость</p>
+        <p id="speed">0 м/ч</p>
+        <input type="range" id="range">
+    </div>
+
+    <div class="cult">
+        <p>Тип культуры</p>
+        <select id="select">
+            <option>Морковь</option>
+            <option>Свекла</option>
+            <option>Картофель</option>
+            <option>Лук</option>
+            <option>Огурцы</option>
+        </select>
+    </div>
+
+    <p2>Время</p2>
+    <div class="timer row">
+        <p1 id="hou" class="col-1">0</p1><p1 class="col-1 sep">:</p1>
+        <p1 id="min" class="col-1">0</p1><p1 class="col-1 sep_">:</p1>
+        <p1 id="sec" class="col-1">0</p1>
+    </div>
+
+    <div class="water">
+        <p3>Водяное давление</p3><br>
+        <p4 id="press">0</p4>
+    </div>
+
+    <img id="log" src="static/apple-touch-icon.png" width="100" height="100" onclick="location.replace('cucumber.html')">
+
+    <h1 class="stater">Состояние: <span id="state">неактивно</span></h1>
+
+    <div id="bebra" style="float: right; opacity: 0; cursor: pointer;">bebra</div>
+
+    <script>
+        plus.style.opacity = 0
+        minus.style.opacity = 0
+
+        let zm = 5
+
+        function initMap() {
+            const uluru = {lat: 56.020270980041936, lng: 49.665894030899075};
+            let map = new google.maps.Map(document.getElementById("map"), {
+              zoom: zm,
+              center: uluru
+            });
+            const marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+        }
+
+        plus.onclick = () => {
+            const uluru = {lat: 56.020270980041936, lng: 49.665894030899075};
+            let map = new google.maps.Map(document.getElementById("map"), {
+              zoom: zm++,
+              center: uluru
+            });
+            const marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+        }
+
+        minus.onclick = () => {
+            const uluru = {lat: 56.020270980041936, lng: 49.665894030899075};
+            let map = new google.maps.Map(document.getElementById("map"), {
+              zoom: zm--,
+              center: uluru
+            });
+            const marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+        }
+
+        // plus.onclick = () => {
+        //     $('img').animate({
+        //         height: '+=50',
+        //         width: '+=60'
+        //     })
+        // }
+
+        // minus.onclick = () => {
+        //     if (Math.round(parseInt(img.style.height)) != 299) {
+        //         $('img').animate({
+        //             height: '-=50',
+        //             width: '-=60'
+        //         })
+        //     }
+        // }
+        
+        setInterval(() => speed.textContent = `${parseInt(range.value * 16)} м/ч`, 1)
+
+        let k = 0
+        b1.onclick = () => {
+            k++
+            if (k > 3) {
+                let error = window.open('Предупреждение', 'test', "width=600, height=380, left=400, top=200")
+                error.document.write(`
+                    <style>
+                        * {font-family: sans-serif}
+                        body {background: #363636}
+                        h2 {
+                            font-size: 50px;
+                            color: #FFFB0C;
+                            line-height; 2rem;
+                            text-align: center;
+                        }
+                        h1 {
+                            font-size: 40px;
+                            color: #fff;
+                            line-height; 2rem;
+                            text-align: center;
+                        }
+                    </style>
+                    <h2>Внимание!</h2>
+                    <h1>Частое включение и выключение поливальной машины может привести к поломкам!</h1>
+                `)
+            } else {
+                let h = document.getElementById('hou')
+                let m = document.getElementById('min')
+                let s = document.getElementById('sec')
+                let hn = 0
+                let mn = 0
+                let sn = 0
+                setInterval(() => {
+                    h.innerHTML = hn
+                    m.innerHTML = mn
+                    s.innerHTML = sn
+                    sn++
+                    if (sn == 60) {
+                        sn = 0
+                        mn++
+                        if (mn == 10) {
+                            $('.sep').css({'left': '-215px'})
+                            $('#sec').css({'left': '-270px'})
+                        } else if (mn < 10) {
+                            $('.sep').css({'left': '-240px'})
+                            $('#sec').css({'left': '-290px'})
+                        } if (mn == 60) {
+                            mn = 0
+                            hn++
+                        }
+                    }
+                }, 1000)
+                
+                let p4 = document.querySelector('p4')
+                if (p4.id != 'press') p4.id = 'press'
+
+                state.textContent = 'активно'
+                state.style.color = 'var(--green)'
+                select.style.border = '2px solid #fff'
+                press.textContent = 6.4263
+                press.style.marginLeft = '32%'
+
+                function randint(min, max) {
+                    return Math.round(Math.random() * (max - min)) + min
+                }
+
+                setInterval(() => {
+                    if (randint(1, 22) === 1) press.textContent = 6.2853
+                    else if (randint(1, 22) === 2) press.textContent = 6.6853
+                    else if (randint(1, 22) === 3) press.textContent = 6.1839
+                    else if (randint(1, 22) === 4) press.textContent = 6.7845
+                    else if (randint(1, 22) === 5) press.textContent = 6.3475
+                    else if (randint(1, 22) === 6) press.textContent = 5.9987
+                    else if (randint(1, 22) === 7) press.textContent = 5.8996
+                    else if (randint(1, 22) === 8) press.textContent = 7.0021
+                    else if (randint(1, 22) === 9) press.textContent = 7.0741
+                    else if (randint(1, 22) === 10) press.textContent = 6.5782
+                    else if (randint(1, 22) === 11) press.textContent = 6.2986
+                    else if (randint(1, 22) === 12) press.textContent = 6.8537
+                    else if (randint(1, 22) === 13) press.textContent = 6.8265
+                    else if (randint(1, 22) === 14) press.textContent = 6.6822
+                    else if (randint(1, 22) === 15) press.textContent = 6.7114
+                    else press.textContent = 6.4263
+                }, 200)
+
+                range.disabled = true
+                select.disabled = true
+                b1.disabled = true
+                b2.disabled = false
+
+                let modal = window.open('Данные Поливальной Машины', 'test', "width=600, height=400, left=400, top=180")
+                modal.document.write(`
+                    <style>
+                        body {
+                            background: #363636;
+                        }
+                        h1, li {
+                            color: #fff;
+                            font-family: sans-serif;
+                            line-height: 2rem;
+                        }
+                        li {
+                            font-size: 30px;
+                        }
+                    </style>
+                    <h1>Поливальное устройство "Казанка":</h1>
+                    <ul>
+                        <li>Включено</li>
+                    </ul>
+                    <h1>На координатах:</h1>
+                    <ul>
+                        <li>Широта: 56.020270980041936</li>
+                        <li>Долгота: 49.665894030899075</li>
+                        <li>Высота над уровнем моря: 100</li>
+                    </ul>
+                    <h1>Поломки:</h1>
+                    <ul>
+                        <li style="color: #0CFF07">Не обнаружены</li>
+                    </ul>
+                `)
+            }
+        }
+
+        b2.onclick = () => {
+            b1.disabled = false
+            b2.disabled = true
+            range.disabled = false
+            select.disabled = false
+            press.style.marginLeft = '45%'
+            state.textContent = 'неактивно'
+            state.style.color = 'red'
+            select.style.border = '2px solid red'
+            $(press).replaceWith('<p4 id="pres">0</p4>')
+            $(sec).replaceWith('<p1 id="sec" class="col-1">0</p1>')
+            $(min).replaceWith('<p1 id="min" class="col-1">0</p1>')
+            $(hou).replaceWith('<p1 id="hou" class="col-1">0</p1>')
+            alert('Поливальная машина "Казанка" успешно отключена')
+        }
+
+        bebra.onclick = () => alert('Данил БЕБРА')
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="static/favicon-32x32.png">
+    <title>Регистрация</title>
+    <style>
+        h1, p {
+            font-family: sans-serif;
+            color: #fff;
+        }
+        body {
+            background-image: url(static/Desktop12.jpg);
+        }
+        h1 {
+            text-align: center;
+        }
+        input:not([type="file"]) {
+            margin: 50px 0px 0px 33%;
+            width: 33%;
+            height: 60px;
+            opacity: .5;
+            transition: .3s all;
+            border-radius: 10px;
+        }
+        input:hover:not([type="file"]) {
+            transform: scale(1.05);
+            opacity: 1;
+            border: 3px solid red;
+        }
+        p {
+            text-align: center;
+            font-size: 30px;
+        }
+        a {color: #fff;}
+        .btn {
+            background-color: red;
+            margin-left: 38%;
+            width: 50vh;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body><br><br>
+    <h1>РЕГИСТРАЦИЯ</h1>
+    <input id="nams" placeholder="Ваше имя"><br>
+    <input id="post" placeholder="Почта"><br>
+    <input id="pass" placeholder="Пароль" type="password"><br><br><br><br>
+    <button id="reg" class="btn btn-danger btn-lg" id="reg">Регистрация</button><br><br>
+    <p>Есть аккаунт? <a id="a" href="#">Войти</a></p>
+    
+    <script>
+        reg.onclick = () => {
+            nams.value == '' ? alert('Вы не ввели имя!') :
+            post.value == '' ? alert('Вы не ввели почту!') :
+            pass.value == '' ? alert('Вы не ввели пароль!') :
+            location.replace('cont.html')
+        }
+        a.onclick = () => {
+            if (prompt('Введите почту')) {
+                if (prompt('Введите пароль')) {
+                    location.replace('cont.html')
+                } else {
+                    alert('Пароль введен неверно!')
+                }
+            } else {
+                alert('Почта введена неверна!')
+            }
+        }
+    </script>
+</body>
+</html>

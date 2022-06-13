@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>ICL</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        /* .overlay {
+            z-index: -1;
+            background-color: rgba(1, 1, 1, .5);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        } */
+
+        h1, h3, h2, p {
+            color: #fff;
+        }
+        h1 {
+            margin-top: -13%;
+            margin-left: -10%;
+            font-size: 3em;
+        }
+        h2 {
+            font-size: xx-large;
+        }
+        .pred {
+            width: 40vh;
+            height: 30vh;
+            opacity: .7;
+            padding: 3px 0px 0px 20px;
+            border-radius: 10%;
+        }
+        .item1 {
+            background-color: red;
+        }
+        .item2 {
+            background-color: #000;
+            margin-left: 45vh;
+        }
+        p {
+            font-size: 30px;
+        }
+        footer {
+            position: absolute;
+            background: #141515;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+        }
+        .home {
+            height: 100vh;
+            position: absolute;
+            left: 0;
+            top: -80px;
+        }
+
+        video {
+            position: absolute;
+            width: 100%;
+            height: -80%;
+            z-index: 1;
+            left: 0;
+            top: -80px;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 114%;
+            z-index: 2;
+            left: 0;
+            top: -80px;
+            background: #000;
+            opacity: .4;
+        }
+
+        .content {
+            width: 800px;
+            margin-left: 32%;
+            position: relative;
+            top: 30px;
+            color: #fff;
+            z-index: 3;
+        }
+        main {
+            margin-top: 10vh;
+        }
+        #c1, #c2 {
+            background-color: #313233;
+            transition: .3s all;
+        }
+        #c1:hover, #c2:hover, #c3:hover {
+            transform: scale(1.05);
+            background-color: red;
+        }
+        hr {
+            margin: 1% 0% 0% -25%;
+        }
+        .icon {
+            margin: 5% 0px 0px -25%;
+            width: 90px;
+            height: 90px;
+            border-radius: 30%;
+        }
+        #register {
+            background-color: red;
+            margin: -130px 0px 0px 70vh;
+            font-size: 30px;
+            width: 250px;
+            height: 100px;
+            transition: .5s all;
+        }
+        #register:hover {
+            transform: scale(1.1);
+            outline: 5px solid #313233;
+            background-color: #A50B00;
+        }
+    </style>
+</head>
+<body>
+    <div class="home"></div>
+        <video autoplay muted loop>
+            <source src="static/Самое красивое видео о природе. Эпичный трек..mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <img src="static/apple-touch-icon.png" class="icon">
+            <h1>ОБЪЕДИНЯЕМ ЛЮДЕЙ <br> И ТЕХНОЛОГИИ</h1>
+            <button id="register" class="btn btn-danger" onclick="location.replace('register.html')">Начать!</button>
+            <hr>
+            <main>
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center" style="margin-top: 20px;">
+                    <div class="col">
+                      <div class="card mb-4 rounded-3 shadow-sm" id="c1">
+                        <div class="card-header py-3">
+                          <h4 class="my-0 fw-normal" style="font-size: 21px;">НАПРАВЛЕНИЯ</h4>
+                        </div>
+                        <div class="card-body">
+                          <img src="static/free-icon-direction-sign-883777.png" style="width: 120px; height: 120px;"> <br> 
+                          <ul class="list-unstyled mt-3 mb-4">
+                            <li>Научно-исследовательская деятельность.</li>
+                            <li>Программные продукты и решения.</li>
+                            <li>Контрактное производство.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm" id="c2">
+                          <div class="card-header py-3 text-white">
+                            <h4 class="my-0 fw-normal" style="font-size: 21px;">ПРОЕКТЫ</h4>
+                          </div>
+                          <div class="card-body">
+                            <img src="static/briefing.png" width="120px" height="120px">
+                            <ul class="list-unstyled mt-3 mb-4">
+                              <li>Сфера услуг.</li>
+                              <li>Госсектор.</li>
+                              <li>И многое другое...</li>
+                              <li>Военно-промышленный комплекс.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </main>
+        </div>
+    </div>
+</body>
